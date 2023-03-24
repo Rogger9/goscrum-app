@@ -1,6 +1,7 @@
+import AppRouter from './routers'
+
 function App() {
-  console.log('sasd')
-  return <h1>App Go Scrum</h1>
+  return <AppRouter />
 }
 
 export default App
