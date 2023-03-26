@@ -11,7 +11,7 @@ const AdminLayout = ({ children }: WithChildren) => (
     color='blackAlpha.700'
   >
     <Header />
-    <GridItem as='main' p='6' bg='whiteAlpha.300' area='main'>
+    <GridItem as='main' p={{ base: '2', md: '6' }} bg='whiteAlpha.300' area='main'>
       {children}
     </GridItem>
   </Grid>

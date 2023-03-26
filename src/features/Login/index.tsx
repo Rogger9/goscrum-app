@@ -1,4 +1,5 @@
-import { Button, FormControl, FormLabel, Grid, Input, Stack, Text } from '@chakra-ui/react'
+import { FormControl, FormLabel, Grid, Input, Stack, Text } from '@chakra-ui/react'
+import { PrimaryButton } from '../../components'
 
 const Login = () => {
   return (
@@ -13,7 +14,7 @@ const Login = () => {
         w={{ base: '80', lg: '2xl' }}
       >
         <Text as='h1' fontSize='2xl' fontWeight='bold' textAlign='center'>
-          Iniciar sesión
+          Login
         </Text>
 
         <FormControl>
@@ -22,11 +23,11 @@ const Login = () => {
         </FormControl>
 
         <FormControl>
-          <FormLabel px='2'>Contraseña</FormLabel>
+          <FormLabel px='2'>Password</FormLabel>
           <Input type='password' />
         </FormControl>
 
-        <Button>Enviar</Button>
+        <PrimaryButton>Send</PrimaryButton>
       </Stack>
     </Grid>
   )

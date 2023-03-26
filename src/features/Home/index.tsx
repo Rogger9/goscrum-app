@@ -1,10 +1,15 @@
 import { Grid } from '@chakra-ui/react'
+import { TaskForm, TaskManager } from './components'
 
 const Home = () => {
   return (
-    <Grid templateColumns={{ base: 'auto', md: 'repeat(2, 1fr)' }} h='full'>
-      <h1>Form</h1>
-      <h1>Tasks view</h1>
+    <Grid
+      templateColumns={{ base: 'auto', lg: 'minmax(350px, 600px) 1fr' }}
+      h='full'
+      gap={{ base: '4', lg: '0' }}
+    >
+      <TaskForm />
+      <TaskManager />
     </Grid>
   )
 }
