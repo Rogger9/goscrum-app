@@ -1,12 +1,20 @@
 import { Grid } from '@chakra-ui/react'
+import Loader from '../../../../components/Loader'
+import { useTask } from '../../../../hooks'
 import { ITask, TaskState } from '../../../../models/ITask'
-import { tasks } from '../../../../__mock__'
 import Column from '../Column'
+import EmptyTaskMessage from './EmptyTaskMessage'
 
 const TaskManager = () => {
-  const tasksByState = tasks.reduce((acc, el) => {
-    acc[el.state] ??= []
-    acc[el.state].push(el)
+  const { list, status } = useTask()
+
+  if (status === 'loading') return <Loader />
+
+  if (!list.length) return <EmptyTaskMessage />
+
+  const tasksByState = list.reduce((acc, el) => {
+    acc[el.status] ??= []
+    acc[el.status].push(el)
     return acc
   }, {} as Record<TaskState, ITask[]>)
 

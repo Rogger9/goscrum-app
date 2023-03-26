@@ -5,7 +5,7 @@ import Task from '../Task'
 
 interface ColumnProps {
   title: string
-  list: ITask[]
+  list: ITask[] | undefined
 }
 
 const Column = ({ title, list }: ColumnProps) => (
@@ -14,8 +14,8 @@ const Column = ({ title, list }: ColumnProps) => (
       {capitalize(title)}
     </Text>
     <Stack mt='2'>
-      {list.map(({ id, ...task }) => (
-        <Task key={id} {...task} />
+      {list?.map(task => (
+        <Task key={task.id} {...task} />
       ))}
     </Stack>
   </Container>

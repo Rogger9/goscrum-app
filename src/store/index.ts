@@ -1,7 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { RecursivePartial } from '../custom'
 
-const rootReducer = combineReducers({})
+import TaskReducer from './taskSlice'
+
+const rootReducer = combineReducers({
+  task: TaskReducer,
+})
 
 export const store = configureStore({
   reducer: rootReducer,
