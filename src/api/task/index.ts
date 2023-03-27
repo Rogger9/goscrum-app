@@ -10,6 +10,11 @@ export const createTask = (task: ITask, list: ITask[]): Promise<ITaskResponse> =
   return mockApiResponse(mockTaskResponse(HttpStatus.CREATED, newTasks))
 }
 
+export const updateTask = (id: number, data: ITask, list: ITask[]): Promise<ITaskResponse> => {
+  const newTasks = list.map(task => (task.id === id ? { ...data } : task))
+  return mockApiResponse(mockTaskResponse(HttpStatus.OK, newTasks))
+}
+
 export const deleteTask = (id: number, list: ITask[]): Promise<ITaskResponse> => {
   const newTasks = list.filter(task => task.id !== id)
   return mockApiResponse(mockTaskResponse(HttpStatus.OK, newTasks))

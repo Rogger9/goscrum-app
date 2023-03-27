@@ -9,14 +9,16 @@ interface ColumnProps {
 }
 
 const Column = ({ title, list }: ColumnProps) => (
-  <Container backgroundColor='gray.100' borderRadius='md' h='full' p='2'>
+  <Container backgroundColor='gray.100' borderRadius='md' h='full' p='2' minW='300px'>
     <Text fontWeight='semibold' textAlign='center'>
       {capitalize(title)}
     </Text>
     <Stack mt='2'>
-      {list?.map(task => (
-        <Task key={task.id} {...task} />
-      ))}
+      {list?.length ? (
+        list?.map(task => <Task key={task.id} {...task} />)
+      ) : (
+        <Text textAlign='center'>No tasks</Text>
+      )}
     </Stack>
   </Container>
 )

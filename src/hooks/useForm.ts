@@ -3,7 +3,7 @@ import { useState } from 'react'
 export type TInitialValues<T> = { [P in keyof T]: T[P] | string }
 
 interface IUseForm<T> {
-  initialValues: TInitialValues<T>
+  initialValues: T
 }
 
 export const useForm = <T>({ initialValues }: IUseForm<T>) => {
@@ -11,5 +11,7 @@ export const useForm = <T>({ initialValues }: IUseForm<T>) => {
 
   const onChange = (name: keyof T, value: string) => setFields({ ...fields, [name]: value })
 
-  return { fields, onChange }
+  const resetForm = () => setFields(initialValues)
+
+  return { fields, onChange, resetForm }
 }

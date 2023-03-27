@@ -1,11 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { createTask, deleteTask, fetchTask } from '../../api/task'
-import { ICreateTaskProps, IDeleteTaskProps } from '../../models/ITask'
+import { createTask, deleteTask, fetchTask, updateTask } from '../../api/task'
+import { ICreateTaskProps, IDeleteTaskProps, IUpdateTaskProps } from '../../models/ITask'
 
 export const fetchTaskAsync = createAsyncThunk('task/fetch', fetchTask)
 
 export const createTaskAsync = createAsyncThunk('task/create', ({ task, list }: ICreateTaskProps) =>
   createTask(task, list),
+)
+
+export const updateTaskAsync = createAsyncThunk(
+  'task/update',
+  ({ id, task, list }: IUpdateTaskProps) => updateTask(id, task, list),
 )
 
 export const deleteTaskAsync = createAsyncThunk('task/delete', ({ id, list }: IDeleteTaskProps) =>

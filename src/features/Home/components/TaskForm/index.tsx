@@ -2,24 +2,23 @@ import { FormControl, Grid, Input, Select, Stack, Text, Textarea } from '@chakra
 import { FormEvent } from 'react'
 import { PrimaryButton } from '../../../../components'
 import { useForm, useTask } from '../../../../hooks'
-import { ITask, TaskPriority, TaskState } from '../../../../models/ITask'
+import { TaskPriority, TaskState } from '../../../../models/ITask'
 import { capitalize } from '../../../../utils/capitalize'
 import { initialValues } from './constants'
 
 const TaskForm = () => {
   const { createTask } = useTask()
-  const { fields, onChange } = useForm({ initialValues })
+  const { fields, onChange, resetForm } = useForm({ initialValues })
   const statusOptions = Object.values(TaskState)
   const priorityOptions = Object.values(TaskPriority)
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const task = {
-      ...fields,
-      id: Date.now(),
-      autor: 'userLogged',
-    } as ITask
-    void createTask(task)
+
+    if (!fields.title) return console.error('no title')
+
+    await createTask({ ...fields })
+    resetForm()
   }
 
   return (
@@ -27,12 +26,20 @@ const TaskForm = () => {
       <Text as='h2' fontWeight='bold' textAlign='center'>
         Create task
       </Text>
-      <Stack as='form' onSubmit={handleSubmit}>
-        <Grid gap='2'>
+      <Stack as='form' onSubmit={handleSubmit} gap='2'>
+        <Grid gap='4'>
           <FormControl>
-            <Input placeholder='Title' onChange={e => onChange('title', e.target.value)} />
+            <Input
+              placeholder='Title'
+              value={fields.title}
+              onChange={e => onChange('title', e.target.value)}
+            />
           </FormControl>
-          <Select placeholder='Select a status' onChange={e => onChange('status', e.target.value)}>
+          <Select
+            placeholder='Select a status'
+            value={fields.status}
+            onChange={e => onChange('status', e.target.value)}
+          >
             {statusOptions.map(status => (
               <option key={status} value={status}>
                 {capitalize(status)}
@@ -40,6 +47,7 @@ const TaskForm = () => {
             ))}
           </Select>
           <Select
+            value={fields.priority}
             placeholder='Select priority'
             onChange={e => onChange('priority', e.target.value)}
           >
@@ -51,7 +59,11 @@ const TaskForm = () => {
           </Select>
         </Grid>
         <FormControl id='desc'>
-          <Textarea placeholder='Description' onChange={e => onChange('desc', e.target.value)} />
+          <Textarea
+            placeholder='Description'
+            value={fields.desc}
+            onChange={e => onChange('desc', e.target.value)}
+          />
         </FormControl>
         <PrimaryButton type='submit'>Create</PrimaryButton>
       </Stack>

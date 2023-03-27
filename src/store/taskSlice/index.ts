@@ -1,17 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '..'
 import { ITaskState } from '../../models/ITask'
-import { createTaskAsync, deleteTaskAsync, fetchTaskAsync } from './thunks'
+import { createTaskAsync, deleteTaskAsync, fetchTaskAsync, updateTaskAsync } from './thunks'
 
 const initialState: ITaskState = {
   status: 'idle',
   list: [],
+  filtered: null,
 }
 
 const taskSlice = createSlice({
   name: 'task',
   initialState,
-  reducers: {},
+  reducers: {
+    updateFilteredTasks: (state, action: PayloadAction<ITaskState['filtered']>) => {
+      state.filtered = action.payload
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchTaskAsync.pending, state => {
@@ -35,6 +40,16 @@ const taskSlice = createSlice({
       .addCase(createTaskAsync.rejected, state => {
         state.status = 'failed'
       })
+      .addCase(updateTaskAsync.pending, state => {
+        state.status = 'loading'
+      })
+      .addCase(updateTaskAsync.fulfilled, (state, action) => {
+        state.status = 'success'
+        state.list = action.payload.data
+      })
+      .addCase(updateTaskAsync.rejected, state => {
+        state.status = 'failed'
+      })
       .addCase(deleteTaskAsync.pending, state => {
         state.status = 'loading'
       })
@@ -47,6 +62,8 @@ const taskSlice = createSlice({
       })
   },
 })
+
+export const { updateFilteredTasks } = taskSlice.actions
 
 export const getTaskState = (state: RootState) => state.task
 

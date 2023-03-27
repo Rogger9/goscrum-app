@@ -6,7 +6,7 @@ export const BADGE_COLORS: Record<TaskPriority, string> = {
   high: 'red',
 }
 
-export const BUTTON_TEXT: Record<TaskState, TaskState> = {
+export const NEXT_STATUS: Record<TaskState, TaskState> = {
   pending: TaskState.IN_PROCESS,
   'in process': TaskState.COMPLETED,
   completed: TaskState.PENDING,

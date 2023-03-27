@@ -1,7 +1,6 @@
-import { TInitialValues } from '../../../../hooks'
-import { ITask } from '../../../../models/ITask'
+import { ICreateTask } from '../../../../models/ITask'
 
-export const initialValues: TInitialValues<Omit<ITask, 'id' | 'autor'>> = {
+export const initialValues: ICreateTask = {
   title: '',
   status: '',
   priority: '',
