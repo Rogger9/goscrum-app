@@ -4,6 +4,7 @@ import PublicRoute from './PublicRoute'
 
 import Home from '../features/Home'
 import Login from '../features/Login'
+import { useAuth } from '../hooks'
 
 export interface IRouterProps {
   isAuth: boolean
@@ -11,7 +12,8 @@ export interface IRouterProps {
 }
 
 const AppRouter = () => {
-  const isAuth = true
+  const { status } = useAuth()
+  const isAuth = status === 'authenticated'
 
   return (
     <BrowserRouter>

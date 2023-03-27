@@ -1,5 +1,5 @@
 import { Grid } from '@chakra-ui/react'
-import Loader from '../../../../components/Loader'
+import { Loader } from '../../../../components'
 import { useTask } from '../../../../hooks'
 import { ITask, TaskState } from '../../../../models/ITask'
 import Column from '../Column'

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 export interface IMockApiProps<T> {
   res: T
-  rej?: T
+  rej?: unknown
   ms?: number
 }
 
