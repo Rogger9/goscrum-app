@@ -13,7 +13,7 @@ export interface IRouterProps {
 
 const AppRouter = () => {
   const { status } = useAuth()
-  const isAuth = true
+  const isAuth = status === 'authenticated'
 
   return (
     <BrowserRouter>

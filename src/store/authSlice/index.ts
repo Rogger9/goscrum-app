@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '..'
 import { IAuthState } from '../../models/IAuth'
-import { user } from '../../__mock__/user'
 import { loginAsync } from './thunks'
 
 const initialState: IAuthState = {
   status: 'idle',
-  user,
+  user: null,
 }
 
 const authSlice = createSlice({
