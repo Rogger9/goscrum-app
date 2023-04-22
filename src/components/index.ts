@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import Icon from './Icon'
 import Loader from './Loader'
 import PrimaryButton from './PrimaryButton'

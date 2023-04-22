@@ -4,7 +4,7 @@ import { RecursivePartial } from '../custom'
 import AuthReducer from './authSlice'
 import TaskReducer from './taskSlice'
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   task: TaskReducer,
   auth: AuthReducer,
 })
