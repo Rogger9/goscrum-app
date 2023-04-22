@@ -56,6 +56,10 @@
     // Enforce the use of the shorthand syntax.
     "object-shorthand": "error",
     "no-console": "warn",
-    "@typescript-eslint/no-misused-promises": "off"
+    "@typescript-eslint/no-misused-promises": "off",
+    "import/no-extraneous-dependencies": [
+      "off",
+      { "devDependencies": ["**/*.test.ts", "**/*.spec.ts"] }
+    ]
   }
 }
