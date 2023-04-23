@@ -45,7 +45,7 @@ const taskSlice = createSlice({
       })
       .addCase(updateTaskAsync.fulfilled, (state, action) => {
         state.status = 'success'
-        state.list = action.payload.data
+        state.list = action.payload?.data
       })
       .addCase(updateTaskAsync.rejected, state => {
         state.status = 'failed'
