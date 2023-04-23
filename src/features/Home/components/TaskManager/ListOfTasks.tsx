@@ -6,7 +6,7 @@ import EmptyTaskMessage from './EmptyTaskMessage'
 type IListOfTasksProps = Pick<ITaskState, 'list'>
 
 const ListOfTasks = ({ list }: IListOfTasksProps) => {
-  if (!list.length) return <EmptyTaskMessage />
+  if (!list?.length) return <EmptyTaskMessage />
 
   const tasksByState = list.reduce((acc, el) => {
     acc[el.status] ??= []

@@ -1,9 +1,10 @@
 import { vi } from 'vitest'
 import Task from '..'
 import * as apiTask from '../../../../../api/task'
-import { fireEvent, render, screen } from '../../../../../utils/testing'
+import { fireEvent, render, screen, waitFor } from '../../../../../utils/testing'
 import { tasks } from '../../../../../__mock__'
 
+vi.mock('../../../../../api/task')
 const [, data] = tasks
 
 describe('Task', () => {
@@ -21,15 +22,15 @@ describe('Task', () => {
     expect(hideBtn).toBeInTheDocument()
   })
 
-  test('should change status of task', () => {
+  test('should change status of task', async () => {
     const updateTask = vi.spyOn(apiTask, 'updateTask')
-    fireEvent.click(screen.getByText(/Move to/i))
+    await waitFor(() => fireEvent.click(screen.getByText(/Move to/i)))
     expect(updateTask).toHaveBeenCalled()
   })
 
-  test('should delete task', () => {
+  test('should delete task', async () => {
     const deleteTask = vi.spyOn(apiTask, 'deleteTask')
-    fireEvent.click(screen.getByRole('img'))
+    await waitFor(() => fireEvent.click(screen.getByRole('img')))
     expect(deleteTask).toHaveBeenCalledTimes(1)
   })
 })

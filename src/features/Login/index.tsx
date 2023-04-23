@@ -6,7 +6,8 @@ import { ERROR_MSG, initialValues } from './constants'
 
 const Login = () => {
   const { login, status } = useAuth()
-  const { onChange } = useForm({ initialValues })
+  const { fields, onChange } = useForm({ initialValues })
+  const isDisabled = !fields.email || !fields.password
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -15,7 +16,7 @@ const Login = () => {
 
   return (
     <Grid placeContent='center' h='100vh' backgroundColor='gray.100'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} role='form'>
         <Stack
           backgroundColor='white'
           px='6'
@@ -45,7 +46,9 @@ const Login = () => {
             </Text>
           )}
           <Center>
-            <PrimaryButton type='submit'>Send</PrimaryButton>
+            <PrimaryButton type='submit' isDisabled={isDisabled}>
+              Send
+            </PrimaryButton>
           </Center>
         </Stack>
       </form>

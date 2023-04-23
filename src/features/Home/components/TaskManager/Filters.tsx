@@ -40,8 +40,8 @@ const Filters = () => {
         colorScheme='brand'
       >
         <Flex gap='4'>
-          <Radio value='all'>Todas</Radio>
-          <Radio value='me'>Mis tareas</Radio>
+          <Radio value='all'>All</Radio>
+          <Radio value='me'>My tasks</Radio>
         </Flex>
       </RadioGroup>
 

@@ -61,4 +61,4 @@ export const render: RenderFunc = function (
 export const changeValue = (element: HTMLElement, value: TValues) =>
   fireEvent.change(element, { target: { value } })
 
-export { fireEvent, screen, waitFor } from '@testing-library/react'
+export { act, fireEvent, screen, waitFor } from '@testing-library/react'

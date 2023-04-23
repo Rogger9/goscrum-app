@@ -24,7 +24,7 @@ const taskSlice = createSlice({
       })
       .addCase(fetchTaskAsync.fulfilled, (state, action) => {
         state.status = 'success'
-        state.list = action.payload.data
+        state.list = action.payload?.data
       })
       .addCase(fetchTaskAsync.rejected, state => {
         state.status = 'failed'
@@ -55,7 +55,7 @@ const taskSlice = createSlice({
       })
       .addCase(deleteTaskAsync.fulfilled, (state, action) => {
         state.status = 'success'
-        state.list = action.payload.data
+        state.list = action.payload?.data
       })
       .addCase(deleteTaskAsync.rejected, state => {
         state.status = 'failed'
