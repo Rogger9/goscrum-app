@@ -14,9 +14,6 @@ const TaskForm = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-
-    if (!fields.title) return console.error('no title')
-
     await createTask({ ...fields })
     resetForm()
   }
@@ -26,7 +23,7 @@ const TaskForm = () => {
       <Text as='h2' fontWeight='bold' textAlign='center'>
         Create task
       </Text>
-      <Stack as='form' onSubmit={handleSubmit} gap='2'>
+      <Stack as='form' onSubmit={handleSubmit} gap='2' role='form'>
         <Grid gap='4'>
           <FormControl>
             <Input
@@ -39,6 +36,7 @@ const TaskForm = () => {
             placeholder='Select a status'
             value={fields.status}
             onChange={e => onChange('status', e.target.value)}
+            data-testid='form-status'
           >
             {statusOptions.map(status => (
               <option key={status} value={status}>
@@ -50,6 +48,7 @@ const TaskForm = () => {
             value={fields.priority}
             placeholder='Select priority'
             onChange={e => onChange('priority', e.target.value)}
+            data-testid='form-priority'
           >
             {priorityOptions.map(priority => (
               <option key={priority} value={priority}>
@@ -65,7 +64,9 @@ const TaskForm = () => {
             onChange={e => onChange('desc', e.target.value)}
           />
         </FormControl>
-        <PrimaryButton type='submit'>Create</PrimaryButton>
+        <PrimaryButton type='submit' isDisabled={!fields.title}>
+          Create
+        </PrimaryButton>
       </Stack>
     </Stack>
   )
