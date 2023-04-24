@@ -11,5 +11,11 @@ export default defineConfig({
     globals: true,
     environment: 'happy-dom',
     setupFiles: ['src/setupTest.ts'],
+    include: ['**/*.{test,spec}.{ts,tsx}'],
+    coverage: {
+      provider: 'c8',
+      exclude: ['**/{utils,api,__mock__}/*'],
+    },
   },
+  base: '/goscrum/',
 })
