@@ -3,7 +3,7 @@ import { RootState } from '..'
 import { IAuthState } from '../../models/IAuth'
 import { loginAsync } from './thunks'
 
-const initialState: IAuthState = {
+export const initialState: IAuthState = {
   status: 'idle',
   user: null,
 }

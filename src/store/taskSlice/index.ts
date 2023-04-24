@@ -3,7 +3,7 @@ import { RootState } from '..'
 import { ITaskState } from '../../models/ITask'
 import { createTaskAsync, deleteTaskAsync, fetchTaskAsync, updateTaskAsync } from './thunks'
 
-const initialState: ITaskState = {
+export const initialState: ITaskState = {
   status: 'idle',
   list: [],
   filtered: null,
